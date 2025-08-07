@@ -7,6 +7,7 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatInputModule } from '@angular/material/input';
 import { MatButtonModule } from '@angular/material/button';
 import { Cliente } from './cliente';
+import { ClienteService } from '../cliente.service';
 
 @Component({
   selector: 'app-cadastro',
@@ -21,12 +22,15 @@ import { Cliente } from './cliente';
   templateUrl: './cadastro.component.html',
   styleUrl: './cadastro.component.scss'
 })
-export class CadastroComponent {
+export class CadastroComponent { //controla a camada de visualização
 
   cliente: Cliente = Cliente.newCliente();
 
-  salvar(){
-    console.log("Dados do cliente: ", this.cliente);
-    
+  constructor(private service: ClienteService){
+
+  }
+
+  salvar(){ //manda o service salvar, porque é ele quem define onde será salvo
+    this.service.salvar(this.cliente);
   }
 }

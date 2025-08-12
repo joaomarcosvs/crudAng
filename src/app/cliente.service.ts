@@ -17,6 +17,25 @@ export class ClienteService { //os dados serão salvos no browser, mas poderia s
     localStorage.setItem(ClienteService.REPO_CLIENTES, JSON.stringify(storage));
   }
 
+  atualizar(cliente: Cliente){
+    const storage = this.obterStorage();
+    storage.forEach(c => {
+      if(c.id === cliente.id){
+        Object.assign(c, cliente); //atualiza o cliente encontrado com os dados do cliente passado
+      }
+    })
+    localStorage.setItem(ClienteService.REPO_CLIENTES, JSON.stringify(storage));
+  }
+
+  deletar(cliente: Cliente){
+    const storage = this.obterStorage();
+
+    const novaLista = storage.filter(c => c.id !== cliente.id);
+
+    localStorage.setItem(ClienteService.REPO_CLIENTES, JSON.stringify(novaLista));
+  }
+
+
   pesquisarClientes(nomeBusca: string): Cliente[]{
 
     const clientes = this.obterStorage();
@@ -26,6 +45,11 @@ export class ClienteService { //os dados serão salvos no browser, mas poderia s
     }
 
     return clientes.filter(clientes => clientes.nome?.indexOf(nomeBusca) !== -1) //indexOf retorna o indice do nome buscado
+  }
+
+  buscarClientePorId(id: string) : Cliente | undefined{
+    const clientes = this.obterStorage();
+    return clientes.find(cliente => cliente.id === id)
   }
 
   private obterStorage(): Cliente[]{

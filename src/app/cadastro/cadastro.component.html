@@ -39,6 +39,7 @@
                 <input type="text"
                       [(ngModel)]="cliente.cpf"
                       name="cpf"
+                      mask="000.000.000-00"
                       placeholder="Ex: 000.000.000-00" matInput/>
               </mat-form-field>
             </div>
@@ -51,6 +52,7 @@
                 <input type="text"
                       [(ngModel)]="cliente.dataNascimento"
                       name="dataNascimento"
+                      mask="00/00/0000"
                       placeholder="Ex: 01/01/2000" matInput/>
               </mat-form-field>
             </div>
@@ -59,16 +61,18 @@
         </mat-card-content>
 
         <mat-card-actions>
+          @if(!atualizando){
+            <button mat-flat-button color="primary" type="submit" >
+              <mat-icon fontIcon="save"></mat-icon>
+              Salvar
+            </button>
+          } @else {
+            <button mat-flat-button color="primary">
+              <mat-icon fontIcon="refresh"></mat-icon>
+              Atualizar
+            </button>
+          }
 
-          <button mat-flat-button color="primary" type="submit">
-            <mat-icon fontIcon="save"></mat-icon>
-            Salvar
-          </button>
-
-          <button mat-flat-button color="primary">
-            <mat-icon fontIcon="refresh"></mat-icon>
-            Atualizar
-          </button>
 
           <button mat-flat-button color="accent" class="ml-5">
             <mat-icon fontIcon="backspace"></mat-icon>

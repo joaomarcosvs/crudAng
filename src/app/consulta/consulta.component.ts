@@ -30,7 +30,7 @@ export class ConsultaComponent implements OnInit{
 
   nomeBusca: string = '';
   listaClientes: Cliente[] = [];
-  colunasTable: string[] = ["id", "nome", "cpf", "dataNascimento", "email", "acoes"];
+  colunasTable: string[] = ["id", "nome", "cpf", "dataNascimento", "email", "endereco", "acoes"];
   snack: MatSnackBar = inject(MatSnackBar);
 
   constructor(
